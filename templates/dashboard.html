@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Tumor Detection Using ML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+        .prediction-result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #333;
+        }
+        .uploaded-image {
+            margin-top: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            max-width: 300px;
+            max-height: 300px;
+        }
+        .upload-button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-button:hover {
+            background-color: #0056b3;
+        }
+        .upload-section {
+            margin-top: 20px;
+        }
+        .loader {
+            border: 6px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 6px solid #3498db;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Brain Tumor Detection Using ML</h1>
+        <div class="upload-section">
+            <form id="upload-file" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+            </form>
+        </div>
+
+        <div class="image-section" style="display:none;">
+            <img id="imagePreview" class="img-responsive" src="#" alt="Uploaded Image"/><br><br>
+            <div>
+                <button type="button" class="upload-button" id="btn-predict">Predict!</button>
+            </div>
+        </div>
+
+        <div class="loader" style="display:none;"></div>
+
+        <h3 id="result">
+            <span></span>
+        </h3>
+    </div>
+
+    <script>
+        document.getElementById('imageUpload').addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                    document.querySelector('.image-section').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.getElementById('btn-predict').addEventListener('click', function () {
+            const loader = document.querySelector('.loader');
+            const result = document.getElementById('result');
+            loader.style.display = 'block';
+            result.innerHTML = '';
+
+            // Simulate prediction API call
+            setTimeout(() => {
+                loader.style.display = 'none';
+                result.innerHTML = '<span>Prediction: Tumor Detected</span>';
+            }, 2000); // Replace with actual API call logic
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "import.html" %}
+{% block content %}
+<center>
+  <br><h2>Login to Brain Tumor Detection</h2><br>
+  {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-danger">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    
+  <form action="{{url_for('login')}}" method="post">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <p>Don't have an account? <a href="{{url_for('signup')}}">Sign up here</a></p>
+  </form>
+  
+</center>
+{% endblock %}

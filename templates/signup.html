@@ -1,0 +1,33 @@
+{% extends "import.html" %}
+{% block content %}
+<center>
+  <br><h2>Sign Up for Brain Tumor Detection</h2><br>
+  <form action="{{url_for('signup')}}" name="username" method="post">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <div>
+      <label for="confirm_password">Confirm Password:</label>
+      <input type="password" id="confirm_password" name="confirm_password" required>
+    </div>
+     <div>
+      <label for="age">Age</label>
+      <input type="number" id="age" name="age" required>
+    </div>
+    <div>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>  -->
+
+    </div>
+    <br>
+    <button  type="submit" class="btn btn-success">Sign Up</button>
+    
+  </form>
+  <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+</center>
+{% endblock %}
